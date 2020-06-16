@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MSG</title>
+<style>
+    .raised_box{
+        padding:20px;
+        border:-1px solid #77aaff,
+                -2px 2px #77aaff,
+                -3px 3px #77aaff,
+                -4px 4px #77aaff,
+                -5px 5px #77aaff;
+
+             }
+</style>
+</head>
+<body>
+{% extends 'base.html' %}
+{% block page_content %}
+<center style="font:Bookman,"><strong>Message Portal</strong></center>
+<marquee bgcolor="Red">you can send and see received messages here.</marquee>
+
+<div class="container">
+    <div class="raised_box">
+        <form action="{%url 'botschaft:send_msg' from_pep.Name %}" method="post">
+            {% csrf_token %}
+            <b>To_friend: </b>
+            <select name="dost">
+                {% for friend in friend_list %}
+                <option value="{{friend.to_person}}">{{friend.to_person}}</option>
+                {% endfor %}
+            </select> &nbsp;
+            <b>Message: </b>{{ msg_form.msg }}
+            <br><br>
+            <center><button type="submit" class="btn btn-primary">Send</button></center>
+        </form>
+    </div>
+</div>
+<br><br>
+<strong><u>
+    Messages:
+</u></strong><div class="raised_box">
+{%for letter in msg_model%}
+     {% if letter.to_person == from_pep%}
+        <b>{{letter.from_person}}</b> :: {{letter.msg}} <br>
+     {%endif%}
+{%endfor%}
+</div>
+<br><br>
+<button type="button" value="Logout"><a href="{% url 'home' %}">Logout</a></button>
+{% endblock %}
+</body>
+</html>
