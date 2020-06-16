@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title></title>
+
+</head>
+<style>
+    .container {
+      position: relative;
+    }
+
+    .topright {
+      position: absolute;
+      top: 8px;
+      right: 16px;
+      font-size: 15px;
+     }
+</style>
+<body>
+{% extends 'base.html' %}
+{% block page_content %}
+<center>
+    <h1>Welcome to ur own canvas</h1>
+</center>
+<p>Name : <b>{{ user.Name}}</b></p>
+
+<div class="container">
+    <div class="topright">Friends :{%for pals in friend_list %}
+        <div><b>{{ pals.to_person }}</b>
+    <br></div>
+        {% endfor %}</div></div>
+<br><br><br>
+<div class="container">
+    <div class="center">
+        <form  action="{% url 'post_view' user.Name %}" method="post">
+            <div> {{ post_form.post_content }} </div><br>
+            <button type="submit" class="btn btn-primary"> Post </button>
+    </div>
+</div>
+<center> <p style="font: Italic ,font-size:20px,">Thoughts... </p>
+    <div>{% for po in post %}
+            <p> <b>{{ po.post_of }}</b>:  {{po.content}}</p>
+            {% endfor %}
+    </div>
+</center>
+<div class="container">
+    <div class="topright">
+        <p><b>People you may know</b></p><br>
+    {% for potential_pal in notfriend %}
+        <div><p class="pull-right"> {{potential_pal.Name}} :
+         &nbsp;
+        {% csrf_token %}   <button type="button" class= "btn btn-primary pull-right" ><a href="{% url 'add_Friend' user.Name potential_pal.id %}"> + Follow</a>
+            </button></p></div>
+        <br>
+    {%endfor%}
+    </div>
+</div>
+<br>
+
+<button type="button" class="btn btn-primary"><a href="{%url 'botschaft:message_win' user.Name %}"> MSG </a></button>
+
+<br><br>
+<button type="button" value="Logout"><a href="{% url 'home' %}">Logout</a></button>
+{%endblock%}
+
+</body>
+</html>
+

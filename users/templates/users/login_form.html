@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+{% extends 'base.html'%}
+{%block page_content%}
+<center>
+    <div>
+        <h1><b> Login </b></h1>
+        <br>
+        <form action="{% url 'login_view_submission' %}" method="post">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label>Username : </label>{{form.username}}
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label>Password :  </label>{{form.password}}
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+</center>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+{%extends 'base.html'%}
+{% block page_content %}
+
+<center><h1><strong>Welcome to friend buzz </strong> </h1></center>
+<br><br>
+ <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"><a class="nav-link" href="{% url 'create_user'%}">Create User</a></span>
+                </button>
+
+            </li>
+            <br><br>
+            <li class="nav-item">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"><a class="nav-link" href="{% url 'Login_view'%}">Already have an account!</a></span>
+                </button>
+            </li>
+          </ul>
+ </div>
+
+{% endblock %}
+</body>
+</html>

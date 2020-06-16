@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+    .raised_box{
+        padding: 20px;
+        border:-1px solid #77aaff,
+                -2px 2px #77aaff,
+                -3px 3px #77aaff,
+                -4px 4px #77aaff,
+                -5px 5px #77aaff;
+
+             }
+</style>
+</head>
+<body>
+{% extends 'base.html' %}
+{% block page_content %}
+<div class="col-md-15 offset-md-2">
+    <center><h1>Welcome to Friend Buzz</h1></center>
+    <br><br>
+    <p> Hi User, by creating your account you can connect to long last friends and can also discuss on ideas and share your journey which can help other!!</p>
+    <p><b>so, Are you ready to be on this roller-coaster of joy</b></p>
+    <br>
+    <div class="raised_box">
+
+        <form action="/mysite/create/submission/" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <p><b>Name:     </b></p>{{form.name}}
+            </div>
+            <div class="form-group">
+                <p><b>Username: </b></p>{{form.username}}
+            </div>
+            <div class="form-group">
+                <p><b>Password: </b></p>{{form.password}}
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+
+    </div>
+</div>
+{%endblock%}
+</body>
+</html>
